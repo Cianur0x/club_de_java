@@ -5,10 +5,16 @@ import java.util.Objects;
 public class Pizza {
 
     private String nombre;
+    private boolean quemada = false;
     private int porciones;
 
     public Pizza(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Pizza(String nombre, boolean quemada) {
+        this.nombre = nombre;
+        this.quemada = quemada;
     }
 
     public String getNombre() {
@@ -25,6 +31,14 @@ public class Pizza {
 
     public void setPorciones(int porciones) {
         this.porciones = porciones;
+    }
+
+    public boolean isQuemada() {
+        return quemada;
+    }
+
+    public void setQuemada(boolean quemada) {
+        this.quemada = quemada;
     }
 
     @Override

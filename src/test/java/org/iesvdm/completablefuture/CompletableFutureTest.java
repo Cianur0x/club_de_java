@@ -101,4 +101,42 @@ public class CompletableFutureTest {
                 })
                 .join(); // EN EL JOIN ES CUANDO EMPIEZA LA EJECUCIÓN
     }
+
+    @Test
+    void completableFutureExceptionally() {
+        //COMPLETABLEFUTURE SON LAS PROMISES DE JAVA, PERO CON OTRO NOMBRE...
+        System.out.println(Thread.currentThread());
+        CompletableFuture
+                //.supplyAsync(Pizzero::cookPizza)
+                //         Lambda Supplier
+                //              |
+                //              V
+                .supplyAsync(() -> { System.out.println(Thread.currentThread());
+                    //return Pizzero.cookPizza();
+                    return Pizzero.cookPizzaQuemada();
+                })
+                //  Lambda Function
+                //               |
+                //               V
+                .thenApply(pizza -> {
+                    System.out.println(Thread.currentThread());
+                    if (pizza.isQuemada()) throw new RuntimeException("Pizza quemada");
+                    Cliente.slice(pizza, 8);
+                    return pizza;
+                })
+                .exceptionally(throwable -> {
+                    System.out.println(Thread.currentThread());
+                    System.out.println(throwable.getMessage());
+                    return Pizzero.cookPizza();
+                })
+                //.thenAccept(Cliente::eat)
+                //         Lambda Consumer
+                //              |
+                //              V
+                .thenAccept(pizza -> {
+                    System.out.println(Thread.currentThread());
+                    Cliente.eat(pizza);
+                })
+                .join(); // EN EL JOIN ES CUANDO EMPIEZA LA EJECUCIÓN
+    }
 }
