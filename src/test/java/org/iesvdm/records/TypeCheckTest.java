@@ -101,6 +101,7 @@ public class TypeCheckTest {
             if (record instanceof Persona(var nombre, var apellidos, var dni)) {
                 System.out.println("Persona: " + nombre + " " + apellidos + " | dni: " + dni);
             } else if (record instanceof Empleado(var codigo, Persona(var nombre, var apellidos, _))) {
+
                                                                                         //        |---IGNORO EL dni EL OPERADOR DE IGNORAR _ EN PREVIEW
                                                                                         //        V   UNNAMED PATTERN - PATRÓN SIN NOMBRE
                 System.out.println("Empleado: " + codigo + " | " + nombre + " " + apellidos /*+ " | dni: " + dni*/);

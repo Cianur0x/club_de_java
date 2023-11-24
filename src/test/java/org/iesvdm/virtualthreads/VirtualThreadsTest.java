@@ -43,7 +43,7 @@ import java.util.concurrent.Executors;
 //
 // Java 8 -> parallel streams y CompletableFuture
 //
-// Java 21 -> Virtual Threads
+// Java 21 -> Virtual Threads (Project Loom, Valhala)
 
 public class VirtualThreadsTest {
 
@@ -74,6 +74,7 @@ public class VirtualThreadsTest {
     void unmillondeVirtualThreads() {
         //try-with-resource try sobre un recurso que implementa Closable
         //te ahorras el finally { *.close()}
+        // potencia en bloqueos de entrada y salida
         try (var executor = Executors
                 .newVirtualThreadPerTaskExecutor()) {
             for (int i = 0; i < 1_000_000; i++) {

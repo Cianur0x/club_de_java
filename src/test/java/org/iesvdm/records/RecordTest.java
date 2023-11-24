@@ -11,6 +11,13 @@ public class RecordTest {
     void utilizandoRecordsTest() {
 
         //Record: clase que actúa como un portador de datos inmutables
+        /* Record es inmutable como string, BigDemciaml, integer
+            cuando yo opero sobr algo, lo que obtengo es un objeto nuevo
+            el anterior existe sin cambiarse, no hay mecanismo de Herencia
+         */
+
+        // Clase POJO típica
+        // Una vez creado no pueden cambiar, una vez que se crea no se puede alterar
         PersonaClass personaClass = new PersonaClass("José M.",
                 "Martín",
                 LocalDate.of(1980,1,1),
@@ -107,7 +114,7 @@ public class RecordTest {
 
         //UNA VEZ DECLARADO PUEDO UTILIZARLO
         Coche coche = new Coche("MA1234TT", "SEAT", "Córdoba",  LocalDate.of(1999,1,1));
-        Assertions.assertTrue(coche.modelo().equals("MA1234TT"));
+        Assertions.assertTrue(coche.marca.equals("SEAT"));
 
     }
 
@@ -139,6 +146,9 @@ public class RecordTest {
 
         Assertions.assertTrue(coche.conductor().nombre().equals("José M."));
         Assertions.assertTrue(coche.acompañantes().length == 2);
+
+        record Prueba(String uno, String dos){}
+        Prueba p = new Prueba(null, null);
 
     }
 }
